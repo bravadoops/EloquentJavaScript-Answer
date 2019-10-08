@@ -16,18 +16,16 @@ function loop(value, test, update, body) {
     }
   }
   loop(3, n => n > 0, n => n - 1, console.log);
-  /**
-  * 5-3
-  * 使用了forEach()就无法使用hint中for loop 提前返回的方式，时间复杂度会有下降
-  */
-  function every(array, test) {
-    result = true;
-    array.forEach(a => {
-      if (!test(a)) {
-        result = false;
+/**
+* 5-3-1 use for loop
+*/
+function every(array, test) {
+    for (let i = 0; i < array.length; i++) {
+      if (!test(array[i])) {
+        return false;
       }
-    });
-    return result;
+    }
+    return true
   }
   console.log(every([1, 3, 5], n => n < 10));
   // → true
@@ -35,3 +33,17 @@ function loop(value, test, update, body) {
   // → false
   console.log(every([], n => n < 10));
   // → true
+
+  // 5-3-2
+  // 不会
+  function every_some(array, test) {
+
+  }
+  console.log(every_some([1, 3, 5], n => n < 10));
+  // → true
+  console.log(every_some([2, 4, 16], n => n < 10));
+  // → false
+  console.log(every_some([], n => n < 10));
+  // → true
+
+  // 5-4
