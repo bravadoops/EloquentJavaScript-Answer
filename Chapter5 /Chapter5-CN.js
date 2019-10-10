@@ -47,3 +47,28 @@ function every(array, test) {
   // → true
 
   // 5-4
+
+  function dominantDirection(text) {
+    // 统计每一个字符的code
+    var charList = [];
+    for (var i = 0; i < text.length; i++) {
+        charList.push(text.charCodeAt(i));
+    }
+    // characterScript() 通过code计算每一个char的Script，得到包含direction信息的object
+    // countBy() 统计不同direction的个数，排除characterScript计算结果为null的字符
+    var resultList = countBy(charList, n => {
+      if (characterScript(n)) {
+          return characterScript(n).direction;
+      }
+    });
+    // reduce()计算max
+    var result = resultList.reduce((a,b) => {
+      return a.count > b.count ? a : b;
+    });
+    return result.name;
+  }
+  
+  console.log(dominantDirection("Hello!"));
+  // → ltr
+  console.log(dominantDirection("Hey, مساء الخير"));
+  // → rtl
