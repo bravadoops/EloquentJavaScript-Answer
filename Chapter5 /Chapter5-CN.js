@@ -47,7 +47,6 @@ function every(array, test) {
   // → true
 
   // 5-4
-
   function dominantDirection(text) {
     // 统计每一个字符的code
     var charList = [];
@@ -67,7 +66,7 @@ function every(array, test) {
     });
     return result.name;
   }
-  
+
   console.log(dominantDirection("Hello!"));
   // → ltr
   console.log(dominantDirection("Hey, مساء الخير"));
